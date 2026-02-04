@@ -24,6 +24,7 @@
                 </Grid.ColumnDefinitions>
                 <Button
                     Text="Display Text"
+                    Padding="5"
                     Grid.Column="0"
                     Clicked="OnDisplayClicked"/>
                 <Button
