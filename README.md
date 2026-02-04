@@ -1,2 +1,2 @@
-#MAUI BASIC LOGIN SCREEN
-This is a .NET MAUI application for the purposes of assessing performance.
+#MAUI BASICS 
+This is a .NET MAUI application folder for the purposes of assessing performance and present educated findings.
