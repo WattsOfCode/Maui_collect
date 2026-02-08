@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RSVP_Application.MainPage">
+<!-- 
+    Application page: Login/Main page
+    Maker: John Deardorff
+    Date: 02/07/2026
+    Purpose:
+    This page will act as the main page of the application and will also act as the 
+    Login page prior to the user being able to get to the main content.              
+                                                                                -->
+    
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="20"
+            VerticalOptions="Center">
+
+            <Label
+                Text="RSVP - Login"
+                Style="{StaticResource Headline}"
+                HorizontalOptions="Center"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <!-- Login section -->
+
+            <Entry
+                x:Name="Username"
+                Placeholder="Username or Email"
+                Keyboard="Email"
+                IsSpellCheckEnabled="False"
+                IsTextPredictionEnabled="False"
+                ReturnType="Next"
+                Style="{StaticResource Body}" />
+            
+            <Entry
+                x:Name="Password" 
+                Placeholder="Password"
+                IsPassword="True"
+                ReturnType="Done"
+                Style="{StaticResource Body}"/>
+            
+            <Button
+                Text="Login"
+                FontAttributes="Bold"
+                SemanticProperties.Hint="Login to your account"
+                Clicked="LoginButton_Clicked" />
+
+            <!--  Registractions and resets  -->
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="15">
+
+                <Button
+                    Text="Register"
+                    Background="Transparent"
+                    TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
+                    Clicked="OnRegister_Clicked" />
+
+                <Button
+                    Text="Forgot login?" 
+                    Background="Transparent"
+                    TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
+                    Clicked="OnForgotLogin_Clicked" />
+                
+            </HorizontalStackLayout>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
