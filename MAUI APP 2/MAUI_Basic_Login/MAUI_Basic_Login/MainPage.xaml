@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUI_Basic_Login.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            
+            <Label
+                Text="John Deardorff - Add and Subtract"
+                Style="{StaticResource Headline}"
+                HorizontalOptions="Center"
+                SemanticProperties.HeadingLevel="Level1" />
+            
+            <Entry
+                x:Name="FirstValue"
+                Placeholder="Enter your first value."
+                Keyboard="Numeric"
+            />
+            <Entry
+                x:Name="SecondValue"
+                Placeholder="Enter your second value."
+                Keyboard="Numeric"
+            />
+
+            <HorizontalStackLayout
+                Spacing="15"
+                HorizontalOptions="Center">
+                <Button
+                    Text="Addition"
+                    Clicked="OnAdditionClicked"
+                    WidthRequest="120"/>
+                <Button
+                    Text="Subtraction"
+                    Clicked="OnSubtractionClicked"
+                    WidthRequest="120"/>
+            </HorizontalStackLayout>
+            
+            <Label
+                x:Name="ResultLabel"
+                Text=""
+                FontSize="Large" 
+                HorizontalOptions="Center"
+                TextColor="Black" />
+            
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
