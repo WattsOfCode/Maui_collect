@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SQLite;
 
 namespace Data_Transfering_SQLite.Model
 {
-    internal class Item
+    public class Item
     {
+        [PrimaryKey] 
+        public string ItemID { get; set; }
+        public string ItemName { get; set; }
+        public string ItemDescription { get; set; }
     }
 }
