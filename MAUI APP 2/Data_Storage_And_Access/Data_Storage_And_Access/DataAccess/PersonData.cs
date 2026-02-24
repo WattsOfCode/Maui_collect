@@ -1,44 +1,70 @@
 ﻿
 using Data_Storage_And_Access.Models;
 using SQLite;
+using Newtonsoft.Json;
 
 namespace Data_Storage_And_Access.DataAccess
 {
     public class PersonData
     {
-        SQLiteAsyncConnection database;
-        async Task Init()
+        private const string siteLink = "http://localhost:59961/api/Person";
+        public async Task<List<Person>> GetPeopleAsync()
         {
-            if (database is not null) { return; }
-            database = new SQLiteAsyncConnection(DatabaseConstants.DatabasePath, DatabaseConstants.Flags);
-            await database.CreateTableAsync<Person>();
-        }
-        public async Task<List<Person>> GetPeopleAsync() {
-            await Init();
-            return await database.Table<Person>().ToListAsync();
-        }
-        public async Task<Person> GetPersonAsync(int id) {
-            await Init();
-            return await database.Table<Person>()
-                .Where(i => i.Id == id)
-                .FirstOrDefaultAsync();
-        }
-        public async Task<int> SavePersonAsync(Person person) {
-            await Init();
-            if (person.Id != 0) {
-                return await database.UpdateAsync(person);
-            } else {
-                return await database.InsertAsync(person);
+            HttpClient client;
+            try
+            {
+                client = new HttpClient();
+                client.DefaultRequestHeaders.TryAddWithoutValidation("Accept", "appliaction/json");
+                List<Person> people = new List<Person>();
+
+                var response = await client.GetAsync("http://localhost:59961/api/Person");
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = response.Content.ReadAsStringAsync().Result;
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        people = JsonConvert.DeserializeObject<List<Person>>(content);
+                    }
+                }
+                return people;
             }
+            catch (Exception ex) { throw ex; }
         }
-        public async Task<int> DeletePersonAsync(Person person) {
-            await Init();
-            return await database.DeleteAsync(person);
+        public async Task<int> savePersonAsync(Person person)
+        {
+            HttpClient client;
+
+            try
+            {
+                client = new HttpClient();
+                client.DefaultRequestHeaders.TryAddWithoutValidation("Accept", "application/json");
+
+                var content = JsonConvert.SerializeObject(person);
+                var buff = System.Text.Encoding.UTF8.GetBytes(content);
+                var byteContent = new ByteArrayContent(buff);
+                byteContent.Headers.ContentType =
+                    new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+
+                HttpResponseMessage response =
+                    client.PostAsync(siteLink, byteContent).Result;
+
+                return response.IsSuccessStatusCode ? 1 : 0;
+            }
+            catch (Exception ex) { throw ex; }
         }
-        public async Task ClearAllPeropleAsync() 
-        { 
-            await Init(); 
-            await database.DeleteAllAsync<Person>(); 
+
+        public async Task ClearAllPeropleAsync()
+        {
+            HttpClient client;
+            try
+            {
+                client = new HttpClient();
+                client.DefaultRequestHeaders.TryAddWithoutValidation("Accept", "application/json");
+
+                // Using .Result for the Delete action
+                var response = client.DeleteAsync(siteLink).Result;
+            }
+            catch (Exception ex) { throw ex; }
         }
     }
 }

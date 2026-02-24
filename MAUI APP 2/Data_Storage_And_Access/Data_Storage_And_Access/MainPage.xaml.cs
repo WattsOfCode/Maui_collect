@@ -20,16 +20,16 @@ namespace Data_Storage_And_Access
 
         private async void OnSaveClicked(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtfirstName.Text)) { await DisplayAlert("Error", "First name cannot be empty", "OK"); return; }
-            if (string.IsNullOrWhiteSpace(txtlastName.Text)) { await DisplayAlert("Error", "Last name cannot be empty", "OK"); return; }
-            if (dpDateOfBirth.Date > DateTime.Today) { await DisplayAlert("Error", "Date of Birth cannot be in the future", "OK"); return; }
+            if (string.IsNullOrWhiteSpace(txtfirstName.Text)) { await DisplayAlertAsync("Error", "First name cannot be empty", "OK"); return; }
+            if (string.IsNullOrWhiteSpace(txtlastName.Text)) { await DisplayAlertAsync("Error", "Last name cannot be empty", "OK"); return; }
+            if (dpDateOfBirth.Date > DateTime.Today) { await DisplayAlertAsync("Error", "Date of Birth cannot be in the future", "OK"); return; }
             var person = new Person
             {
                 FirstName = txtfirstName.Text,
                 LastName = txtlastName.Text,
                 DoB = (DateTime)dpDateOfBirth.Date
             };
-            await personData.SavePersonAsync(person);
+            await personData.savePersonAsync(person);
 
             txtfirstName.Text = string.Empty;
             txtlastName.Text = string.Empty;
@@ -49,12 +49,12 @@ namespace Data_Storage_And_Access
         }
         private async void OnClearClicked(object sender, EventArgs e)
         {
-            bool confirm = await DisplayAlert("Reset", "Delte all entries?", "Yes", "No");
+            bool confirm = await DisplayAlertAsync("Reset", "Delte all entries?", "Yes", "No");
             if (confirm)
             {
                 await personData.ClearAllPeropleAsync();
                 UpdatePeopleList();
-                await DisplayAlert("Success", "Database cleared", "OK");
+                await DisplayAlertAsync("Success", "Database cleared", "OK");
             }
         }
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
