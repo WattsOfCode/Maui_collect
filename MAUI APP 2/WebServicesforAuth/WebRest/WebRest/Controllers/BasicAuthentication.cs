@@ -21,7 +21,7 @@ namespace WebRest.Controllers
                 var credentials = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(authHeaderParts[1]));
                 var parts = credentials.Split(':');
 
-                if (parts.Length != 2 || parts[0].ToLower() != "Deardorff01" || parts[1] != "Password1")
+                if (parts.Length != 2 || parts[0] != "Deardorff01" || parts[1] != "Password1")
                 {
                     context.Result = new Microsoft.AspNetCore.Mvc.UnauthorizedResult();
                 } else {

@@ -8,6 +8,7 @@ namespace WebRest.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [BasicAuthentication]
     public class ItemController : ControllerBase
     {
         // GET: api/<PersonController>
