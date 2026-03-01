@@ -13,11 +13,17 @@ public class Event
     public DateTime Date { get; set; }
     public DateTime Deadline { get; set; }
     public int AttendeeLimit { get; set; }
+    public int hostId { get; set; }
 
     //storing names and emails of people who have RSVP'd to the event
     [Ignore]
     public List<string> AttendeeList { get; set; } = new List<string>();
-
-    // Login helper
-    public bool isUserCreator(string currentUserEmail) => Host == currentUserEmail;
+    public bool IsCurrentUserHost
+    {
+        get
+        {
+            if (App.IsGuest) return false;
+            return hostId == App.CurrentUserId;
+        }
+    }
 }

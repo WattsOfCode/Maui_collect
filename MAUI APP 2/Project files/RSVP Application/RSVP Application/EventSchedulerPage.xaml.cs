@@ -35,6 +35,7 @@ public partial class EventSchedulerPage : ContentPage
             Name = NameEntry.Text,
             Address = AddressEntry.Text,
             Description = DescriptionEditor.Text,
+            hostId = App.CurrentUserId,
 
             Date = (DatePicker.Date ?? DateTime.Now).Add(TimePicker.Time ?? TimeSpan.Zero),
             Deadline = (DeadlineDatePicker.Date ?? DateTime.Now).Add(DeadlineTimePicker.Time ?? TimeSpan.Zero),

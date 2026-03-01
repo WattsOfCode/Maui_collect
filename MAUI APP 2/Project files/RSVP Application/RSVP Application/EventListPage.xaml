@@ -12,48 +12,45 @@
         created or are attending.
     -->
     <Grid RowDefinitions="Auto, Auto, *, Auto" Padding="20">
-    <HorizontalStackLayout Grid.Row="0" HorizontalOptions="Center" Spacing="20">
+        <HorizontalStackLayout Grid.Row="0" HorizontalOptions="Center" Spacing="20">
             <Label Text="RSVP Dashboard" Style="{StaticResource Headline}" TextColor="Black"/>
-        <Button Text="Log Out" Clicked="OnLogoutClicked" BackgroundColor="Transparent" TextColor="Black" />
-    </HorizontalStackLayout>
+            <Button Text="Log Out" Clicked="OnLogoutClicked" BackgroundColor="Transparent" TextColor="Black" />
+        </HorizontalStackLayout>
 
-    <Picker Grid.Row="1" x:Name="FilterPicker" Title="Filter Events" SelectedIndexChanged="OnFilterChanged">
-        <Picker.Items>
-            <x:String>All Events</x:String>
-            <x:String>Events I'm Hosting</x:String>
-        </Picker.Items>
-    </Picker>
+        <Picker Grid.Row="1" x:Name="FilterPicker" Title="Filter Events" SelectedIndexChanged="OnFilterChanged">
+            <Picker.Items>
+                <x:String>All Events</x:String>
+                <x:String>Events I'm Hosting</x:String>
+            </Picker.Items>
+        </Picker>
 
-    <CollectionView Grid.Row="2" x:Name="EventListView" SelectionMode="Single" SelectionChanged="OnEventSelected">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Border Margin="0,5" Padding="15" Stroke="LightGray" StrokeShape="RoundRectangle 10" BackgroundColor="#CCFFFFFF">
-                   
-                    <HorizontalStackLayout Spacing="15">
-                        
-                        <VerticalStackLayout BackgroundColor="DarkSlateGray" Padding="10" WidthRequest="60" >
-                            
-                            <Label Text="{Binding Date, StringFormat='{0:MMM}'}" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold"/>
-                            <Label Text="{Binding Date, StringFormat='{0:dd}'}" TextColor="Black" HorizontalOptions="Center" FontSize="20"/>
-                        
-                        </VerticalStackLayout>
-                        
-                        <VerticalStackLayout VerticalOptions="Center" >
-                                
-                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" TextColor="Black"/>
-                            <Label Text="{Binding Address}" TextColor="Black"/>
-                        
-                        </VerticalStackLayout>
-                    </HorizontalStackLayout>
-                </Border>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+        <CollectionView Grid.Row="2" x:Name="EventListView" SelectionMode="Single" SelectionChanged="OnEventSelected">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="0,5" Padding="15" Stroke="LightGray" StrokeShape="RoundRectangle 10" BackgroundColor="#CCFFFFFF">
+                        <HorizontalStackLayout Spacing="15">
+                            <VerticalStackLayout BackgroundColor="DarkSlateGray" Padding="10" WidthRequest="60" >
+                                <Label Text="{Binding Date, StringFormat='{0:MMM}'}" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold"/>
+                                <Label Text="{Binding Date, StringFormat='{0:dd}'}" TextColor="Black" HorizontalOptions="Center" FontSize="20"/>
+                            </VerticalStackLayout>
 
-    <Button 
-        x:Name="CreateEventButton"
-        Grid.Row="3" 
-        Text="+ Create New Event" 
-        Clicked="OnCreateEvent_Clicked" />
+                            <VerticalStackLayout VerticalOptions="Center" >
+                                <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" TextColor="Black"/>
+
+                                <Label Text="★ YOU ARE THE HOST" 
+                                       TextColor="DarkGoldenrod" 
+                                       FontSize="10" 
+                                       FontAttributes="Bold"
+                                       IsVisible="{Binding IsCurrentUserHost}"/>
+
+                                <Label Text="{Binding Address}" TextColor="Black"/>
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button x:Name="CreateEventButton" Grid.Row="3" Text="+ Create New Event" Clicked="OnCreateEvent_Clicked" />
     </Grid>
 </ContentPage>

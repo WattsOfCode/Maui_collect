@@ -18,7 +18,8 @@ public partial class MainPage : ContentPage
         var user = await App.Database.GetUserAsync(Username.Text, Password.Text);
         if (user != null)
         {
-            App.IsGuest = false;
+            App.IsGuest = false; 
+            App.CurrentUserId = user.Id;
             App.CurrentUserName = user.FullName;
             App.CurrentUserEmail = user.Email; 
             await Navigation.PushAsync(new EventListPage());

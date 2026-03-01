@@ -19,7 +19,11 @@ public partial class EventPage : ContentPage
 
         AttendeesListView.ItemsSource = _currentEvent.AttendeeList;
 
-        bool isCreator = _currentEvent.isUserCreator(App.CurrentUserName);
+        bool isCreator = false;
+        if (!App.IsGuest)
+        {
+            isCreator = (_currentEvent.hostId == App.CurrentUserId);
+        }
 
         if (App.IsGuest) {
             GuestSection.IsVisible = false;

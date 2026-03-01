@@ -18,4 +18,5 @@ public partial class App : Application
     }
 
     public static DatabaseService Database { get; private set; }
+    public static int CurrentUserId { get; set; }
 }
