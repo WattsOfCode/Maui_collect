@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RSVP_Application.SignUpPage"
+             BackgroundColor="#F0EAD6"
+             Title="Create Account">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20" VerticalOptions="Center">
+
+            <Label Text="Join RSVP" Style="{StaticResource Headline}" HorizontalOptions="Center" />
+
+            <Frame BackgroundColor="#CCFFFFFF" CornerRadius="15" HasShadow="False" Padding="20">
+                <VerticalStackLayout Spacing="15">
+                    <Entry x:Name="NewName" Placeholder="Full Name" />
+                    <Entry x:Name="NewEmail" Placeholder="Email Address" Keyboard="Email" />
+                    <Entry x:Name="NewPhone" Placeholder="Phone Number" Keyboard="Telephone" />
+                    <Entry x:Name="NewPassword" Placeholder="Password" IsPassword="True" />
+                    <Entry x:Name="ConfirmPassword" Placeholder="Confirm Password" IsPassword="True" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Button Text="Register" Clicked="OnRegisterClicked" WidthRequest="140" />
+
+                <Button Text="Cancel" Clicked="OnCancelClicked" WidthRequest="140" 
+                        BackgroundColor="Transparent" TextColor="Red" />
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

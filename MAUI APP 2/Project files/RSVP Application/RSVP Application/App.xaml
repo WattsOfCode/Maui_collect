@@ -9,6 +9,19 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <Color x:Key="EggshellWhite">#F0EAD6</Color>
+            <Color x:Key="FrostedWhite">#CCFFFFFF</Color>
+            <Color x:Key="Gray300">#D3D3D3</Color>
+
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource Gray300}" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontFamily" Value="Comic Sans MS" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="Margin" Value="5" />
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

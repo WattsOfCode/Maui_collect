@@ -7,7 +7,7 @@
     <ScrollView>
         <VerticalStackLayout Padding="30" Spacing="15" >
             <Label 
-                Text="John Deardorff - Item inventory tracker"
+                Text="Loc Store - Local Storage"
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1"
                 HorizontalOptions="Center" />
@@ -32,7 +32,7 @@
 
                 <Button Grid.Column="0" 
                     x:Name="btnSave"
-                    Text="Save Item"
+                    Text="Saev"
                     HorizontalOptions="Center"
                     HeightRequest="50"
                     WidthRequest="200"

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RSVP_Application.EventSchedulerPage"
+             BackgroundColor="#F0EAD6"
+             Title="EventSchedulerPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="Schedule New Event" Style="{StaticResource Headline}" HorizontalOptions="Center" />
+
+            <Border Padding="20" Stroke="LightGray" StrokeShape="RoundRectangle 15" BackgroundColor="#CCFFFFFF">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Event Name" FontAttributes="Bold" />
+                    <Entry x:Name="NameEntry" Placeholder="e.g. Graduation Party" />
+
+                    <Label Text="Location" FontAttributes="Bold" />
+                    <Entry x:Name="AddressEntry" Placeholder="123 Maui St" />
+
+                    <Label Text="Date &amp; Time" FontAttributes="Bold" />
+                    <DatePicker x:Name="DatePicker" />
+                    <TimePicker x:Name="TimePicker" />
+
+                    <Label Text="Description" FontAttributes="Bold" />
+                    <Editor x:Name="DescriptionEditor" HeightRequest="100" />
+                </VerticalStackLayout>
+            </Border>
+
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Button Text="Create Event" Clicked="OnSaveEventClicked" WidthRequest="150" />
+
+                <Button Text="Cancel" Clicked="OnCancelClicked" BackgroundColor="Transparent" TextColor="Red" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

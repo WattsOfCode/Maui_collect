@@ -31,15 +31,13 @@
                 Keyboard="Email"
                 IsSpellCheckEnabled="False"
                 IsTextPredictionEnabled="False"
-                ReturnType="Next"
-                Style="{StaticResource Body}" />
+                ReturnType="Next"/>
             
             <Entry
                 x:Name="Password" 
                 Placeholder="Password"
                 IsPassword="True"
-                ReturnType="Done"
-                Style="{StaticResource Body}"/>
+                ReturnType="Done"/>
             
             <Button
                 Text="Login"
