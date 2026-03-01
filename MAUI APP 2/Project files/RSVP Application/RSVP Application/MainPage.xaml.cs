@@ -5,20 +5,28 @@ public partial class MainPage : ContentPage
 {
     public MainPage() => InitializeComponent();
 
+
     private async void LoginButton_Clicked(object sender, EventArgs e)
     {
-        // Requirement: Validate as a hard-coded user
-        if (Username.Text == "admin" && Password.Text == "password")
+        // validation inputs
+        if (string.IsNullOrWhiteSpace(Username.Text) || string.IsNullOrWhiteSpace(Password.Text))
+        {
+            await DisplayAlertAsync("Error", "Please enter credentials", "OK");
+            return;
+        }
+        // database check
+        var user = await App.Database.GetUserAsync(Username.Text, Password.Text);
+        if (user != null)
         {
             App.IsGuest = false;
-            App.CurrentUserName = "Admin User";
+            App.CurrentUserName = user.FullName;
+            App.CurrentUserEmail = user.Email; 
             await Navigation.PushAsync(new EventListPage());
         }
         else
         {
-            // Requirement: Log in as a guest
-            // FIX: Changed DisplayAlertAsync to DisplayAlert
-            bool answer = await DisplayAlertAsync("Login Failed", "Continue as Guest?", "Yes", "No");
+            //fall back for guest access
+            bool answer = await DisplayAlertAsync("Login Failed", "User not found. Continue as Guest?", "Yes", "No");
             if (answer)
             {
                 App.IsGuest = true;
@@ -30,13 +38,11 @@ public partial class MainPage : ContentPage
 
     private async void OnRegister_Clicked(object sender, EventArgs e)
     {
-        // Requirement: Navigate to and away from the Add User screen
         await Navigation.PushAsync(new SignUpPage());
     }
 
-    // FIX: Added missing method referenced in XAML
     private async void OnForgotLogin_Clicked(object sender, EventArgs e)
     {
-        await DisplayAlert("Help", "Please contact the administrator to reset your password.", "OK");
+        await DisplayAlertAsync("Help", "Please contact the administrator to reset your password.", "OK");
     }
 }

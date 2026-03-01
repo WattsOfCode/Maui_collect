@@ -19,45 +19,53 @@
             Text="RSVP"
             VerticalOptions="Center" 
             Style="{StaticResource Headline}"
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center" 
+            TextColor="Black"/>
         <Label
             Text="Register"
             Style="{StaticResource Subheadline}"
             HorizontalOptions="Center" 
-            Margin="0,0,0,10"/>
+            Margin="0,0,0,10"
+            TextColor="Black"/>
 
         <!-- Entry information section -->
 
         <Entry
             x:Name="FirstName"
             Placeholder="First Name"
-            ReturnType="Next" />
+            ReturnType="Next" 
+            TextColor="Black"/>
         <Entry
             x:Name="LastName"
             Placeholder="Last Name"
-            ReturnType="Next" />
+            ReturnType="Next" 
+            TextColor="Black"/>
         <Entry
             x:Name="PhoneNumber"
             Placeholder="Phone Number"
             Keyboard="Telephone"
-            ReturnType="Next" />
+            ReturnType="Next" 
+            TextColor="Black"/>
         <Entry
             x:Name="Email"
             Placeholder="Email"
             Keyboard="Email"
             IsSpellCheckEnabled="False"
             IsTextPredictionEnabled="False"
-            ReturnType="Next" />
+            ReturnType="Next" 
+            TextColor="Black"/>
         <Entry
             x:Name="Password" 
             Placeholder="Password"
             IsPassword="True"
-            ReturnType="Next" />
+            ReturnType="Next" 
+            TextColor="Black"/>
         <Entry
             x:Name="ConfirmPassword"
             Placeholder="Confirm Password"
             IsPassword="True"
-            ReturnType="Done" />
+            ReturnType="Done" 
+            TextColor="Black"/>
 
         <!-- Button section -->
         <Button

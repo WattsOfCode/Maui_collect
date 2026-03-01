@@ -8,23 +8,25 @@
     <ScrollView>
         <VerticalStackLayout Padding="30" Spacing="20" VerticalOptions="Center">
 
-            <Label Text="Join RSVP" Style="{StaticResource Headline}" HorizontalOptions="Center" />
+            <Label Text="Join RSVP" TextColor="Black" Style="{StaticResource Headline}" HorizontalOptions="Center"  />
 
-            <Frame BackgroundColor="#CCFFFFFF" CornerRadius="15" HasShadow="False" Padding="20">
-                <VerticalStackLayout Spacing="15">
-                    <Entry x:Name="NewName" Placeholder="Full Name" />
-                    <Entry x:Name="NewEmail" Placeholder="Email Address" Keyboard="Email" />
-                    <Entry x:Name="NewPhone" Placeholder="Phone Number" Keyboard="Telephone" />
-                    <Entry x:Name="NewPassword" Placeholder="Password" IsPassword="True" />
-                    <Entry x:Name="ConfirmPassword" Placeholder="Confirm Password" IsPassword="True" />
+            <Frame BackgroundColor="#CCFFFFFF" CornerRadius="15" HasShadow="False" Padding="20" >
+                <VerticalStackLayout Spacing="15" >
+                    <Entry x:Name="NewName" Placeholder="Full Name" TextColor="Black"/>
+                    <Entry x:Name="NewUserName" Placeholder="Username" TextColor="Black"/>
+                    <Entry x:Name="NewEmail" Placeholder="Email Address" Keyboard="Email" TextColor="Black"/>
+                    <Entry x:Name="NewPhone" Placeholder="Phone Number" Keyboard="Telephone" TextColor="Black"/>
+                    <Entry x:Name="NewPassword" Placeholder="Password" IsPassword="True" TextColor="Black"/>
+                    <Entry x:Name="ConfirmPassword" Placeholder="Confirm Password" IsPassword="True" TextColor="Black"/>
                 </VerticalStackLayout>
             </Frame>
 
             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                <Button Text="Register" Clicked="OnRegisterClicked" WidthRequest="140" />
+                <Button Text="Register" 
+                Clicked="OnRegisterClicked" WidthRequest="140" TextColor="Black"/>
 
-                <Button Text="Cancel" Clicked="OnCancelClicked" WidthRequest="140" 
-                        BackgroundColor="Transparent" TextColor="Red" />
+                <Button Text="Cancel" Clicked="OnCancelClicked" 
+                        WidthRequest="140" BackgroundColor="Transparent" TextColor="Red" />
             </HorizontalStackLayout>
 
         </VerticalStackLayout>

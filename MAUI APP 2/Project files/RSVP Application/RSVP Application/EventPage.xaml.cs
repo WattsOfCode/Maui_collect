@@ -17,11 +17,18 @@ public partial class EventPage : ContentPage
         EventLocationEntry.Text = _currentEvent.Address;
         EventDescriptionEditor.Text = _currentEvent.Description;
 
+        AttendeesListView.ItemsSource = _currentEvent.AttendeeList;
+
         bool isCreator = _currentEvent.isUserCreator(App.CurrentUserName);
 
-        CreatorSection.IsVisible = isCreator;
-        GuestSection.IsVisible = !isCreator;
-
+        if (App.IsGuest) {
+            GuestSection.IsVisible = false;
+            CreatorSection.IsVisible = false;
+        } else {
+            CreatorSection.IsVisible = isCreator;
+            GuestSection.IsVisible = !isCreator;
+        }
+                
         EventNameEntry.IsReadOnly = !isCreator;
         EventLocationEntry.IsReadOnly = !isCreator;
         EventDescriptionEditor.IsReadOnly = !isCreator;
@@ -29,17 +36,45 @@ public partial class EventPage : ContentPage
 
     private async void OnRSVP_Clicked(object sender, EventArgs e)
     {
-        await DisplayAlertAsync("Success", "You are on the list!", "OK");
-        await Navigation.PopAsync();
+        if (_currentEvent.AttendeeList.Contains(App.CurrentUserName))
+        {
+            await DisplayAlert("Notice", "You are already on the list!", "OK");
+            return;
+        }
+
+        _currentEvent.AttendeeList.Add(App.CurrentUserName);
+
+        AttendeesListView.ItemsSource = null;
+        AttendeesListView.ItemsSource = _currentEvent.AttendeeList;
+
+        var apiService = new DataAccess.WebService();
+        bool success = await apiService.PostRSVPToServer(_currentEvent.Id, App.CurrentUserName);
+        await DisplayAlert("Success", "You've been added to the guest list!", "OK");
     }
 
     private async void OnDecline_Clicked(object sender, EventArgs e) => await Navigation.PopAsync();
 
     private async void OnDeleteEvent_Clicked(object sender, EventArgs e)
     {
-        bool confirm = await DisplayAlertAsync("Delete", "Are you sure?", "Yes", "No");
-        if (confirm) await Navigation.PopAsync();
+        bool confirm = await DisplayAlert("Delete", "Are you sure you want to delete this event?", "Yes", "No");
+        if (confirm)
+        {
+            // Add your deletion logic here (Local DB + Server)
+            await Navigation.PopAsync();
+        }
     }
 
-    private async void OnSaveChanges_Clicked(object sender, EventArgs e) => await Navigation.PopAsync();
+    private async void OnSaveChanges_Clicked(object sender, EventArgs e)
+    {
+        // Update the object from the entries
+        _currentEvent.Name = EventNameEntry.Text;
+        _currentEvent.Address = EventLocationEntry.Text;
+        _currentEvent.Date = EventDatePicker.Date.GetValueOrDefault() + EventTimePicker.Time.GetValueOrDefault();
+
+        // Save locally and to server
+        await App.Database.SaveEventAsync(_currentEvent);
+
+        await DisplayAlert("Success", "Changes saved!", "OK");
+        await Navigation.PopAsync();
+    }
 }

@@ -21,23 +21,25 @@
             <Label 
                 Text="RSVP"
                 Style="{StaticResource Headline}" 
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center" 
+                TextColor="Black"/>
             <Label
                 Text="Event Details"
                 Style="{StaticResource SubHeadline}" 
                 HorizontalOptions="Center" 
-                Margin="0,0,0,10" />
+                Margin="0,0,0,10" 
+                TextColor="Black"/>
 
             <!-- Event information section -->
 
             <Label 
                 x:Name="EventTitle" 
                 Text="Event" FontAttributes="Bold" 
-                />
+                TextColor="Black"/>
             <Entry 
                 x:Name="EventNameEntry" 
                 Placeholder="Birthday Party" 
-                />
+                TextColor="Black"/>
 
             <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
                 <VerticalStackLayout Grid.Column="0">
@@ -45,10 +47,11 @@
                     <Label 
                         Text="Date" 
                         FontAttributes="Bold" 
+                        TextColor="Black"
                         />
                     <DatePicker 
                         x:Name="EventDatePicker" 
-                        />
+                        TextColor="Black"/>
 
                 </VerticalStackLayout>
                 <VerticalStackLayout Grid.Column="1">
@@ -56,10 +59,10 @@
                     <Label 
                         Text="Time" 
                         FontAttributes="Bold" 
-                        />
+                        TextColor="Black"/>
                     <TimePicker 
                         x:Name="EventTimePicker" 
-                        />
+                        TextColor="Black"/>
 
                 </VerticalStackLayout>
             </Grid>
@@ -67,22 +70,36 @@
             <Label
                 Text="Location" 
                 FontAttributes="Bold" 
+                TextColor="Black"
                 /> 
             <Entry
                 x:Name="EventLocationEntry" 
                 Placeholder="100 Main St, City, State" 
-                />
+                TextColor="Black" />
 
             <Label
                 Text="Description"
                 FontAttributes="Bold"
+                TextColor="Black"
                 />
             <Editor
                 x:Name="EventDescriptionEditor"
-                Placeholder="Enter event description here..."
-                AutoSize="TextChanges"
+                Placeholder="Event details go here..."
+                TextColor="Black"
                 HeightRequest="100"
-                />
+                BackgroundColor="#CCFFFFFF" />
+            
+            <VerticalStackLayout Spacing="10" Padding="15">
+                <Label Text="Who's Attending" FontAttributes="Bold" FontSize="18" TextColor="Black"/>
+
+                <CollectionView x:Name="AttendeesListView">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Label Text="{Binding .}" Margin="10,5" TextColor="Black" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
 
             <BoxView
                 HeightRequest="1"
@@ -90,28 +107,31 @@
                 Margin="0,10"
                 />
 
-            <VerticalStackLayout x:Name="GuestSection" Spacing="10">
+            <VerticalStackLayout x:Name="GuestSection" Spacing="10" IsVisible="{Binding IsNotGuest}" >
                 <Label 
                     Text="Will you be attending?" 
                     HorizontalOptions="Center" 
+                    TextColor="Black"
                     />
                 <Button 
                     Text="I'm Attending!" 
+                    IsVisible="{Binding Source={x:Static local:App.IsGuest}, Converter={StaticResource InvertedBoolConverter}}"
                     Clicked="OnRSVP_Clicked" 
                     BackgroundColor="Green" 
-                    />
+                    TextColor="Black"/>
                 <Button 
                     Text="Maybe next time" 
+                    IsVisible="{Binding Source={x:Static local:App.IsGuest}, Converter={StaticResource InvertedBoolConverter}}"
                     Clicked="OnDecline_Clicked" 
                     BackgroundColor="Red" 
-                    />
+                    TextColor="Black"/>
             </VerticalStackLayout>
 
             <VerticalStackLayout x:Name="CreatorSection" IsVisible="False" Spacing="10">
                 <Button 
                     Text="Save Changes" 
                     Clicked="OnSaveChanges_Clicked" 
-                    />
+                    TextColor="Black" />
                 <Button 
                     Text="Delete Event" 
                     Clicked="OnDeleteEvent_Clicked" 

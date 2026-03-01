@@ -10,26 +10,37 @@
 
             <Border Padding="20" Stroke="LightGray" StrokeShape="RoundRectangle 15" BackgroundColor="#CCFFFFFF">
                 <VerticalStackLayout Spacing="10">
-                    <Label Text="Event Name" FontAttributes="Bold" />
-                    <Entry x:Name="NameEntry" Placeholder="e.g. Graduation Party" />
 
-                    <Label Text="Location" FontAttributes="Bold" />
-                    <Entry x:Name="AddressEntry" Placeholder="123 Maui St" />
+                    <Label x:Name="HostLabel" Text="Host: " FontAttributes="Bold" TextColor="DarkSlateGray" />
 
-                    <Label Text="Date &amp; Time" FontAttributes="Bold" />
-                    <DatePicker x:Name="DatePicker" />
-                    <TimePicker x:Name="TimePicker" />
+                    <Label Text="Event Name" FontAttributes="Bold" Background="Gray"/>
+                    <Entry x:Name="NameEntry" Placeholder="e.g. Graduation Party" Background="Gray"/>
 
-                    <Label Text="Description" FontAttributes="Bold" />
-                    <Editor x:Name="DescriptionEditor" HeightRequest="100" />
+                    <Label Text="Location" FontAttributes="Bold" Background="Gray"/>
+                    <Entry x:Name="AddressEntry" Placeholder="123 Maui St" Background="Gray"/>
+
+                    <Label Text="Event Date &amp; Time" FontAttributes="Bold" />
+                    <DatePicker x:Name="DatePicker" Background="Gray"/>
+                    <TimePicker x:Name="TimePicker" Background="Gray"/>
+
+                    <Label Text="RSVP Deadline" FontAttributes="Bold" />
+                    <DatePicker x:Name="DeadlineDatePicker" Background="Gray"/>
+                    <TimePicker x:Name="DeadlineTimePicker" Background="Gray" />
+
+                    <Label Text="Attendee Limit" FontAttributes="Bold" Background="Gray"/>
+                    <Entry x:Name="LimitEntry" Placeholder="e.g. 50" Keyboard="Numeric" Background="Gray"/>
+
+                    <Label Text="Description" FontAttributes="Bold" Background="Gray"/>
+                    <Editor x:Name="DescriptionEditor" HeightRequest="100" Background="Gray"/>
+
                 </VerticalStackLayout>
             </Border>
 
             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                <Button Text="Create Event" Clicked="OnSaveEventClicked" WidthRequest="150" />
-
+                <Button x:Name="saveButton" Text="Create Event" Clicked="OnSaveEventClicked" WidthRequest="150"/>
                 <Button Text="Cancel" Clicked="OnCancelClicked" BackgroundColor="Transparent" TextColor="Red" />
             </HorizontalStackLayout>
+            
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

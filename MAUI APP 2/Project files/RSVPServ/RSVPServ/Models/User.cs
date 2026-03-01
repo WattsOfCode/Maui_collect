@@ -1,13 +1,13 @@
 ﻿using SQLite;
 
-namespace RSVP_Application.Models
+namespace RSVPServ.Models
 {
     public class User
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-        [Unique]
+        [Unique] 
         public string Username { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }

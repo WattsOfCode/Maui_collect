@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RSVP_Application.MainPage">
 <!-- 
@@ -8,8 +8,7 @@
     Date: 02/07/2026
     Purpose:
     This page will act as the main page of the application and will also act as the 
-    Login page prior to the user being able to get to the main content.              
-                                                                                -->
+    Login page prior to the user being able to get to the main content.        -->
     
     <ScrollView>
         <VerticalStackLayout
@@ -37,13 +36,14 @@
                 x:Name="Password" 
                 Placeholder="Password"
                 IsPassword="True"
-                ReturnType="Done"/>
+                ReturnType="Done" />
             
             <Button
                 Text="Login"
                 FontAttributes="Bold"
                 SemanticProperties.Hint="Login to your account"
-                Clicked="LoginButton_Clicked" />
+                Clicked="LoginButton_Clicked" 
+                TextColor="Black"/>
 
             <!--  Registractions and resets  -->
 
@@ -52,19 +52,16 @@
                 <Button
                     Text="Register"
                     Background="Transparent"
-                    TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
+                    TextColor="Gray"
                     Clicked="OnRegister_Clicked" />
 
                 <Button
                     Text="Forgot login?" 
                     Background="Transparent"
-                    TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
+                    TextColor="Gray"
                     Clicked="OnForgotLogin_Clicked" />
                 
             </HorizontalStackLayout>
-
-
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

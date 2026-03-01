@@ -13,7 +13,7 @@
     -->
     <Grid RowDefinitions="Auto, Auto, *, Auto" Padding="20">
     <HorizontalStackLayout Grid.Row="0" HorizontalOptions="Center" Spacing="20">
-        <Label Text="RSVP Dashboard" Style="{StaticResource Headline}" />
+            <Label Text="RSVP Dashboard" Style="{StaticResource Headline}" TextColor="Black"/>
         <Button Text="Log Out" Clicked="OnLogoutClicked" BackgroundColor="Transparent" TextColor="Black" />
     </HorizontalStackLayout>
 
@@ -28,14 +28,21 @@
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <Border Margin="0,5" Padding="15" Stroke="LightGray" StrokeShape="RoundRectangle 10" BackgroundColor="#CCFFFFFF">
+                   
                     <HorizontalStackLayout Spacing="15">
-                        <VerticalStackLayout BackgroundColor="DarkSlateGray" Padding="10" WidthRequest="60">
-                            <Label Text="{Binding Date, StringFormat='{0:MMM}'}" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold"/>
-                            <Label Text="{Binding Date, StringFormat='{0:dd}'}" TextColor="White" HorizontalOptions="Center" FontSize="20"/>
+                        
+                        <VerticalStackLayout BackgroundColor="DarkSlateGray" Padding="10" WidthRequest="60" >
+                            
+                            <Label Text="{Binding Date, StringFormat='{0:MMM}'}" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold"/>
+                            <Label Text="{Binding Date, StringFormat='{0:dd}'}" TextColor="Black" HorizontalOptions="Center" FontSize="20"/>
+                        
                         </VerticalStackLayout>
-                        <VerticalStackLayout VerticalOptions="Center">
-                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18"/>
-                            <Label Text="{Binding Address}" TextColor="Gray"/>
+                        
+                        <VerticalStackLayout VerticalOptions="Center" >
+                                
+                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" TextColor="Black"/>
+                            <Label Text="{Binding Address}" TextColor="Black"/>
+                        
                         </VerticalStackLayout>
                     </HorizontalStackLayout>
                 </Border>
@@ -43,6 +50,10 @@
         </CollectionView.ItemTemplate>
     </CollectionView>
 
-    <Button Grid.Row="3" Text="+ Create New Event" Clicked="OnCreateEvent_Clicked" />
+    <Button 
+        x:Name="CreateEventButton"
+        Grid.Row="3" 
+        Text="+ Create New Event" 
+        Clicked="OnCreateEvent_Clicked" />
     </Grid>
 </ContentPage>
