@@ -60,22 +60,34 @@ public partial class EventPage : ContentPage
 
     private async void OnDeleteEvent_Clicked(object sender, EventArgs e)
     {
-        bool confirm = await DisplayAlert("Delete", "Are you sure you want to delete this event?", "Yes", "No");
+        bool confirm = await DisplayAlert("Delete Event", "Are you sure you want to delete this event?", "Yes", "No");
+
         if (confirm)
         {
-            // Add your deletion logic here (Local DB + Server)
-            await Navigation.PopAsync();
+
+            int rowsAffected = await App.Database.DeleteEventAsync(_currentEvent);
+            if (rowsAffected > 0)
+            {
+                //Sync with WebService if needed
+                var apiService = new DataAccess.WebService();
+                
+                await apiService.DeleteEventFromServer(_currentEvent.Id);
+                await DisplayAlert("Deleted", "The event has been removed.", "OK");
+                await Navigation.PopAsync();
+            }
+            else
+            {
+                await DisplayAlert("Error", "Could not delete the event from the database.", "OK");
+            }
         }
     }
 
     private async void OnSaveChanges_Clicked(object sender, EventArgs e)
     {
-        // Update the object from the entries
         _currentEvent.Name = EventNameEntry.Text;
         _currentEvent.Address = EventLocationEntry.Text;
         _currentEvent.Date = EventDatePicker.Date.GetValueOrDefault() + EventTimePicker.Time.GetValueOrDefault();
 
-        // Save locally and to server
         await App.Database.SaveEventAsync(_currentEvent);
 
         await DisplayAlert("Success", "Changes saved!", "OK");

@@ -51,4 +51,9 @@ public class DatabaseService
         await Init();
         await _database.InsertAsync(ev);
     }
+
+    public Task<int> DeleteEventAsync(Event eventToDelete)
+    {
+        return _database.DeleteAsync(eventToDelete);
+    }
 }

@@ -52,9 +52,20 @@ namespace RSVP_Application.DataAccess
             {
                 var response = await _client.PostAsJsonAsync($"api/events/{eventId}/rsvp", new { Username = username });
                 return response.IsSuccessStatusCode;
-            }
-            catch
+            } 
+            catch { return false; }
+        }
+        public async Task<bool> DeleteEventFromServer(int eventId)
+        {
+            try
             {
+                string url = $"https://localhost.com:57825/api/events/{eventId}";
+                var response = await _client.DeleteAsync(url);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting event: {ex.Message}");
                 return false;
             }
         }
