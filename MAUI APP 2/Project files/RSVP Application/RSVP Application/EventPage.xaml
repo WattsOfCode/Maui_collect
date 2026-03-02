@@ -115,13 +115,11 @@
                     />
                 <Button 
                     Text="I'm Attending!" 
-                    IsVisible="{Binding Source={x:Static local:App.IsGuest}, Converter={StaticResource InvertedBoolConverter}}"
                     Clicked="OnRSVP_Clicked" 
                     BackgroundColor="Green" 
                     TextColor="Black"/>
                 <Button 
                     Text="Maybe next time" 
-                    IsVisible="{Binding Source={x:Static local:App.IsGuest}, Converter={StaticResource InvertedBoolConverter}}"
                     Clicked="OnDecline_Clicked" 
                     BackgroundColor="Red" 
                     TextColor="Black"/>

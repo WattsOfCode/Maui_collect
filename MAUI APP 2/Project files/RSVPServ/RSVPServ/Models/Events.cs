@@ -12,11 +12,24 @@ public class Event
     public DateTime Date { get; set; }
     public DateTime Deadline { get; set; }
     public int AttendeeLimit { get; set; }
+    public int HostId { get; set; } // Capitalized for consistency
 
-    //storing names and emails of people who have RSVP'd to the event
     [Ignore]
     public List<string> AttendeeList { get; set; } = new List<string>();
 
-    // Login helper
-    public bool isUserCreator(string currentUserEmail) => Host == currentUserEmail;
+    [Ignore]
+    public bool IsCurrentUserHost
+    {
+        get
+        {
+            // This 'if' block only exists for the MAUI App
+#if APP_CLIENT
+                if (App.IsGuest) return false;
+                return HostId == App.CurrentUserId;
+#else
+            // The server doesn't care about "Current User" in the model itself
+            return false;
+#endif
+        }
+    }
 }

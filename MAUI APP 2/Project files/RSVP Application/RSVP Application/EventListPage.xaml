@@ -27,7 +27,11 @@
         <CollectionView Grid.Row="2" x:Name="EventListView" SelectionMode="Single" SelectionChanged="OnEventSelected">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Border Margin="0,5" Padding="15" Stroke="LightGray" StrokeShape="RoundRectangle 10" BackgroundColor="#CCFFFFFF">
+                    <Border Stroke="Transparent" 
+                            BackgroundColor="#CCFFFFFF" 
+                            Margin="10" 
+                            Padding="15" 
+                            StrokeShape="RoundRectangle 15">
                         <HorizontalStackLayout Spacing="15">
                             <VerticalStackLayout BackgroundColor="DarkSlateGray" Padding="10" WidthRequest="60" >
                                 <Label Text="{Binding Date, StringFormat='{0:MMM}'}" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold"/>

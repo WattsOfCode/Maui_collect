@@ -40,6 +40,12 @@ public partial class EventPage : ContentPage
 
     private async void OnRSVP_Clicked(object sender, EventArgs e)
     {
+        if (_currentEvent.AttendeeList.Count >= _currentEvent.AttendeeLimit)
+        {
+            await DisplayAlert("Full", "Sorry, this event has reached its attendee limit.", "OK");
+            return;
+        }
+
         if (_currentEvent.AttendeeList.Contains(App.CurrentUserName))
         {
             await DisplayAlert("Notice", "You are already on the list!", "OK");
@@ -47,7 +53,6 @@ public partial class EventPage : ContentPage
         }
 
         _currentEvent.AttendeeList.Add(App.CurrentUserName);
-
         AttendeesListView.ItemsSource = null;
         AttendeesListView.ItemsSource = _currentEvent.AttendeeList;
 

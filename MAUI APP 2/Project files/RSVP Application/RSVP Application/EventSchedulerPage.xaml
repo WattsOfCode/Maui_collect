@@ -8,7 +8,11 @@
         <VerticalStackLayout Padding="20" Spacing="15">
             <Label Text="Schedule New Event" Style="{StaticResource Headline}" HorizontalOptions="Center" />
 
-            <Border Padding="20" Stroke="LightGray" StrokeShape="RoundRectangle 15" BackgroundColor="#CCFFFFFF">
+            <Border Stroke="Transparent" 
+                    BackgroundColor="#CCFFFFFF" 
+                    Margin="10" 
+                    Padding="15" 
+                    StrokeShape="RoundRectangle 15">
                 <VerticalStackLayout Spacing="10">
 
                     <Label x:Name="HostLabel" Text="Host: " FontAttributes="Bold" TextColor="DarkSlateGray" />

@@ -14,7 +14,7 @@ public partial class SignUpPage : ContentPage
         string typedUsername = NewUserName.Text;
         bool isTaken = await App.Database.IsUsernameTakenAsync(typedUsername);
         if (isTaken) {
-            await DisplayAlertAsync("Username Taken", "The username is already taken. Please choose another one.", "OK");
+            await DisplayAlert("Username Taken", "The username is already taken. Please choose another one.", "OK");
             return;
         }
 
@@ -25,13 +25,13 @@ public partial class SignUpPage : ContentPage
             string.IsNullOrWhiteSpace(NewPassword.Text) ||
             string.IsNullOrWhiteSpace(ConfirmPassword.Text))
         {
-            await DisplayAlertAsync("Missing Info", "All fields are required.", "OK");
+            await DisplayAlert("Missing Info", "All fields are required.", "OK");
             return;
         }
 
         if (NewPassword.Text != ConfirmPassword.Text)
         {
-            await DisplayAlertAsync("Error", "Passwords do not match.", "OK");
+            await DisplayAlert("Error", "Passwords do not match.", "OK");
             return;
         }
 
@@ -52,15 +52,15 @@ public partial class SignUpPage : ContentPage
 
             if (!serverSuccess)
             {
-                await DisplayAlertAsync("Warning", "Account created locally but failed to sync with server.", "OK");
+                await DisplayAlert("Warning", "Account created locally but failed to sync with server.", "OK");
             }
 
-            await DisplayAlertAsync("Success", "Account created successfully!", "OK");
+            await DisplayAlert("Success", "Account created successfully!", "OK");
             await Navigation.PopAsync();
         }
         catch (Exception ex)
         {
-            await DisplayAlertAsync("Error", $"An error occurred: {ex.Message}", "OK");
+            await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
             await Navigation.PopAsync();
         }
     }
